@@ -1,20 +1,30 @@
 <script lang="ts">
+    import axios from 'axios';
+    import { onMount } from 'svelte';
+
     type Leaderboard = Array<{
-        teamName: string;
+        name: string;
         score: string | number;
+        members: string;
     }>;
 
     let ranking: Leaderboard = [
-        { teamName: "Glider", score: "999" },
-        { teamName: "Ramstein", score: "1233" },
-        { teamName: "Gusaron", score: "3243" },
-        { teamName: "Nitron", score: "321443" }
+        { name: "Glider", score: 999, members: 'Temirzhan Yussupov, Rakishev Akezhan' },
+        { name: "Ramstein", score: 1233, members: 'Temirzhan Yussupov, Rakishev Akezhan' },
+        { name: "Gusaron", score: 3243, members: 'Temirzhan Yussupov, Rakishev Akezhan' },
+        { name: "Nitron", score: 321443, members: 'Temirzhan Yussupov, Rakishev Akezhan' }
     ];
 
-    ranking = ranking.sort((a, b) => b.score - a.score);
+    $: ranking = ranking.sort((a, b) => b.score - a.score);
+
+    onMount(async () => {
+       const res = await axios.get('http://localhost:8000/api/leaderboard');
+       ranking = res.data();
+       ranking = ranking.sort((a, b) => b.score - a.score);
+    });
 </script>
 
-<p class="font-bold text-4xl uppercase">SCOREBOARD</p>
+<p class="font-bold text-4xl uppercase mb-12">SCOREBOARD</p>
 
 <div class="flex flex-col text-white">
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -32,17 +42,23 @@
                         <th scope="col" class="text-sm font-medium px-10 py-4 text-left uppercase">
                             Score
                         </th>
+                        <th scope="col" class="text-sm font-medium px-10 py-4 text-left uppercase">
+                            Members
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
-                    {#each ranking as { teamName, score }, i}
+                    {#each ranking as { name, score, members }, i}
                         <tr class="border-b" style:color="background-color: {i % 2 === 0 ? 'rgba(255,255,255,.04)' : 'transparent'}">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">#{i+1}</td>
                             <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
-                                {teamName}
+                                {name}
                             </td>
                             <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
                                 {score}
+                            </td>
+                            <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
+                                {members}
                             </td>
                         </tr>
                     {/each}

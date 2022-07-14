@@ -1,60 +1,48 @@
 <script lang="ts">
     import { Accordion, AccordionItem } from "svelte-accessible-accordion";
 
-    const expanded = [false, false, false];
-    let backgroundColors = ['rgba(255,255,255,.04)', 'rgba(255,255,255,.04)', 'rgba(255,255,255,.04)'];
-
-    $: backgroundColors = expanded.map((n) => !n ? 'rgba(255,255,255,.04)' : '#062a4e');
-
     const challenges = [
         {
             name: 'Challenge 1',
-            score: 100,
+            score: 50,
             id: 1,
-            description: 'custom html'
+            description: 'custom html',
         },
         {
             name: 'Challenge 2',
             score: 50,
             id: 2,
+            description: '<p>Capture the Flag</p>'
+        },
+        {
+            name: 'Challenge 3',
+            score: 100,
+            id: 3,
+            description: 'ctf'
+        },
+        {
+            name: 'Challenge 4',
+            score: 100,
+            id: 4,
             description: 'ctf'
         },
     ];
+    const expanded = Array.from(new Array(challenges.length)).fill(false);
+    console.log('expanded', expanded);
+    let backgroundColors;
+    $: backgroundColors = expanded.map((n) => !n ? 'rgba(255,255,255,.04)' : '#062a4e');
 </script>
 
 <p class="font-bold text-4xl uppercase mb-12">Challenges</p>
 
-<p class="font-bold text-xl uppercase my-4">Blockchain</p>
+<!--<p class="font-bold text-xl uppercase my-4">Blockchain</p>-->
 <div class="text-white">
     <Accordion multiselect>
-        <div style="margin-top: 8px; background-color: {backgroundColors[0]}">
-            <AccordionItem bind:expanded={expanded[0]} title="Title 1">Content 1</AccordionItem>
-        </div>
-
-        <div style="margin-top: 8px; background-color: {backgroundColors[1]}">
-            <AccordionItem bind:expanded={expanded[1]} title="Title 2">Content 2</AccordionItem>
-        </div>
-
-        <div style="margin-top: 8px; background-color: {backgroundColors[2]}">
-            <AccordionItem bind:expanded={expanded[2]} title="Title 3">Content 2</AccordionItem>
-        </div>
-    </Accordion>
-</div>
-
-<p class="font-bold text-xl uppercase mt-10 mb-4">Crypto</p>
-<div class="text-white">
-    <Accordion multiselect>
-        <div style="margin-top: 8px; background-color: {backgroundColors[0]}">
-            <AccordionItem bind:expanded={expanded[0]} title="Title 1">Content 1</AccordionItem>
-        </div>
-
-        <div style="margin-top: 8px; background-color: {backgroundColors[1]}">
-            <AccordionItem bind:expanded={expanded[1]} title="Title 2">Content 2</AccordionItem>
-        </div>
-
-        <div style="margin-top: 8px; background-color: {backgroundColors[2]}">
-            <AccordionItem bind:expanded={expanded[2]} title="Title 3">Content 2</AccordionItem>
-        </div>
+        {#each challenges as { name, score, id, description }, i}
+            <div style="margin-top: 8px; background-color: {backgroundColors[i]}">
+                <AccordionItem bind:expanded={expanded[i]} title="{id}. {name} ({score} score)">{@html description}</AccordionItem>
+            </div>
+        {/each}
     </Accordion>
 </div>
 

@@ -41,10 +41,11 @@
         isPromiseLoading = true;
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
+
         try {
-            // const res = await axios.post('http://localhost:8000/api/register', {
-            //     headers
-            // });
+            const res = await axios.post('http://localhost:8000/api/register', {
+                headers
+            });
 
             success = 'You have successfully registered. Redirecting to login page...';
 
@@ -52,8 +53,8 @@
                 setTimeout(() => resolve(), 2000);
             }))
 
-            // console.log('res', res);
-            window.location.replace("/login");
+            console.log('res', res);
+            // window.location.replace("/login");
         } catch (err) {
             error = err;
         } finally {

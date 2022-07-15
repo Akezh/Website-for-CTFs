@@ -6,12 +6,12 @@
     let solvedProblems = '';
 
     onMount(async () => {
-        const res = await axios.get('http://localhost:8000/api/profile', {
+        const profileResponse = await axios.get('http://localhost:8000/api/profile', {
             headers: {
                 Authorization: localStorage.getItem('accessToken')
             }
         });
-        const { solved_tasks, team } = res.data;
+        const { solved_tasks, team } = profileResponse.data;
 
         userStore.update((prevStore) => ({
             ...prevStore,
@@ -28,8 +28,6 @@
             .map(n => n.task_id)
             .join(", ");
     });
-
-    $: console.log('solvedProblems', solvedProblems)
 </script>
 
 <div class="mx-64 text-white" style="margin-left: 20%; margin-right: 20%">

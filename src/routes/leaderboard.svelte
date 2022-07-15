@@ -1,6 +1,7 @@
 <script lang="ts">
     import axios from 'axios';
     import { onMount } from 'svelte';
+    import { userStore } from "../stores/userStore";
 
     type Leaderboard = Array<{
         name: string;
@@ -11,9 +12,26 @@
     let ranking: Leaderboard = [];
 
     onMount(async () => {
-       const res = await axios.get('http://localhost:8000/api/leaderboard');
-       const { teams } = res.data;
+       const leaderboardResponse = await axios.get('http://localhost:8000/api/leaderboard');
+       const { teams } = leaderboardResponse.data;
        ranking = teams.sort((a, b) => b.score - a.score);
+
+        const profileResponse = await axios.get('http://localhost:8000/api/profile', {
+            headers: {
+                Authorization: localStorage.getItem('accessToken')
+            }
+        });
+        const { solved_tasks, team } = profileResponse.data;
+
+        userStore.update((prevStore) => ({
+            ...prevStore,
+            isLoggedIn: true,
+            teamName: team.username,
+            members: team.members,
+            id: team.id,
+            score: team.score,
+            solvedTasks: solved_tasks
+        }));
     });
 </script>
 
@@ -41,20 +59,35 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {#each ranking as { name, score, members }, i}
-                        <tr class="border-b" style:color="background-color: {i % 2 === 0 ? 'rgba(255,255,255,.04)' : 'transparent'}">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">#{i+1}</td>
-                            <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
-                                {name}
-                            </td>
-                            <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
-                                {score}
-                            </td>
-                            <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
-                                {members}
-                            </td>
-                        </tr>
-                    {/each}
+                        {#each ranking as { name, score, members }, i}
+                            {#if $userStore.teamName === name}
+                                <tr class="border-b" style="background-color: darkcyan">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">#{i+1}</td>
+                                    <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
+                                        {name}
+                                    </td>
+                                    <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
+                                        {score}
+                                    </td>
+                                    <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
+                                        {members}
+                                    </td>
+                                </tr>
+                            {:else}
+                                <tr class="border-b">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">#{i + 1}</td>
+                                    <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
+                                        {name}
+                                    </td>
+                                    <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
+                                        {score}
+                                    </td>
+                                    <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
+                                        {members}
+                                    </td>
+                                </tr>
+                            {/if}
+                        {/each}
                     </tbody>
                 </table>
             </div>

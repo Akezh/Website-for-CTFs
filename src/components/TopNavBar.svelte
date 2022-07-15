@@ -3,7 +3,7 @@
 
     const signOut = () => {
         window.localStorage.removeItem('accessToken');
-        userStore.set({ isLoggedIn: false, teamName: undefined, score: undefined, members: undefined });
+        userStore.set({ isLoggedIn: false, teamName: undefined, score: undefined, members: undefined, id: undefined, solvedTasks: undefined });
     }
 </script>
 

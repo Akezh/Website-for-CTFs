@@ -13,8 +13,8 @@
             error = 'Team name should have at least 3 symbols.'
             return false;
         }
-        if (password.length < 8) {
-            error = 'Password should have at least 8 symbols.';
+        if (password.length < 6) {
+            error = 'Password should have at least 6 symbols.';
             return false;
         }
 
@@ -27,14 +27,14 @@
         if (!status) return;
 
         isPromiseLoading = true;
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        try {
-            // const res = await axios.post('http://localhost:8000/api/login', {
-            //     headers
-            // });
 
-            const token = 'rofl';
+        try {
+            const res = await axios.post('http://localhost:8000/api/login', {
+                username: teamName,
+                password
+            });
+            const { token } = res.data;
+
             window.localStorage.setItem('accessToken', token);
             success = 'You have successfully logged in. Redirecting to dashboard page...';
 
@@ -42,7 +42,6 @@
                 setTimeout(() => resolve(), 2000);
             }))
 
-            // console.log('res', res);
             window.location.replace("/");
         } catch (err) {
             error = err;
@@ -73,7 +72,7 @@
                 {#if success}<p class="text-sm text-green-500">{success}</p>{/if}
             </div>
         {:else}
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
             <p class="text-sm mt-8 text-orange-700">{error}</p>
         {/if}
     </form>

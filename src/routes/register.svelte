@@ -21,8 +21,8 @@
             error = 'Each member field should have at least 3 symbols.'
             return false;
         }
-        if (password.length < 8 || confirmPassword.length < 8) {
-            error = 'Password should have at least 8 symbols.';
+        if (password.length < 6 || confirmPassword.length < 6) {
+            error = 'Password should have at least 6 symbols.';
             return false;
         }
         if (password !== confirmPassword) {
@@ -39,12 +39,15 @@
         if (!status) return;
 
         isPromiseLoading = true;
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+
+        const members = [member1, member2, member3].filter(member => member).join(', ');
 
         try {
-            const res = await axios.post('http://localhost:8000/api/register', {
-                headers
+            await axios.post('http://localhost:8000/api/register', {
+                username: teamName,
+                members,
+                name: teamName,
+                password
             });
 
             success = 'You have successfully registered. Redirecting to login page...';
@@ -53,8 +56,7 @@
                 setTimeout(() => resolve(), 2000);
             }))
 
-            console.log('res', res);
-            // window.location.replace("/login");
+            window.location.replace("/login");
         } catch (err) {
             error = err;
         } finally {
@@ -99,7 +101,7 @@
                 {#if success}<p class="text-sm text-green-500">{success}</p>{/if}
             </div>
         {:else}
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</button>
             {#if error}<p class="text-sm mt-8 text-orange-700">{error}</p>{/if}
         {/if}
     </form>

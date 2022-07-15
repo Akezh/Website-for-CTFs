@@ -8,23 +8,16 @@
         members: string;
     }>;
 
-    let ranking: Leaderboard = [
-        { name: "Glider", score: 999, members: 'Temirzhan Yussupov, Rakishev Akezhan' },
-        { name: "Ramstein", score: 1233, members: 'Temirzhan Yussupov, Rakishev Akezhan' },
-        { name: "Gusaron", score: 3243, members: 'Temirzhan Yussupov, Rakishev Akezhan' },
-        { name: "Nitron", score: 321443, members: 'Temirzhan Yussupov, Rakishev Akezhan' }
-    ];
-
-    $: ranking = ranking.sort((a, b) => b.score - a.score);
+    let ranking: Leaderboard = [];
 
     onMount(async () => {
        const res = await axios.get('http://localhost:8000/api/leaderboard');
-       ranking = res.data();
-       ranking = ranking.sort((a, b) => b.score - a.score);
+       const { teams } = res.data;
+       ranking = teams.sort((a, b) => b.score - a.score);
     });
 </script>
 
-<p class="font-bold text-4xl uppercase mb-12">SCOREBOARD</p>
+<p class="font-bold text-4xl uppercase mb-12">LEADERBOARD</p>
 
 <div class="flex flex-col text-white">
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">

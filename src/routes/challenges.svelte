@@ -28,7 +28,7 @@
         },
     ];
     const expanded = Array.from(new Array(challenges.length)).fill(false);
-    console.log('expanded', expanded);
+
     let backgroundColors;
     $: backgroundColors = expanded.map((n) => !n ? 'rgba(255,255,255,.04)' : '#062a4e');
 </script>

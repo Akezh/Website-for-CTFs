@@ -8,7 +8,7 @@
 <TopNavBar />
 <LeftNavBar />
 
-<div class="fixed top-16 left-64 right-0 p-8">
+<div class="absolute top-16 left-64 right-0 p-8">
     <slot></slot>
 </div>
 

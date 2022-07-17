@@ -7,5 +7,5 @@ export const userStore = writable({
     score: undefined,
     members: undefined,
     id: undefined,
-    solvedTasks: undefined
+    solvedTasks: []
 });

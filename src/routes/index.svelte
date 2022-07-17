@@ -1,34 +1,12 @@
 <script lang="ts">
-    import axios from 'axios';
     import { userStore } from "../stores/userStore";
-    import { onMount } from "svelte";
 
     let solvedProblems = '';
 
-    onMount(async () => {
-        const profileResponse = await axios.get('http://localhost:8000/api/profile', {
-            headers: {
-                Authorization: localStorage.getItem('accessToken')
-            }
-        });
-        const { solved_tasks, team } = profileResponse.data;
-
-        userStore.update((prevStore) => ({
-            ...prevStore,
-            isLoggedIn: true,
-            username: team.username,
-            teamName: team.name,
-            members: team.members,
-            id: team.id,
-            score: team.score,
-            solvedTasks: solved_tasks
-        }));
-
-        $: solvedProblems = solved_tasks
-            .sort((a, b) => a.task_id - b.task_id)
-            .map(n => n.task_id)
-            .join(", ");
-    });
+    $: solvedProblems = $userStore.solvedTasks
+        .sort((a, b) => a.task_id - b.task_id)
+        .map(n => n.task_id)
+        .join(", ");
 </script>
 
 <div class="mx-64 text-white" style="margin-left: 20%; margin-right: 20%">

@@ -79,6 +79,45 @@
                 </div>
             `
         },
+        {
+            name: '_____ code',
+            score: 100,
+            id: 7,
+            description: `
+                <div>
+                    <audio controls>
+                      <source src="audio/task7.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                    </audio>
+                </div>
+            `
+        },
+        {
+            name: 'Company!',
+            score: 100,
+            id: 8,
+            description: `
+                <div>
+                    <p>(1,1),(1,2),(1,3),(1,4),(1,5),(2,5),(3,5),(3,4),(3,3),(3,2),(3,1),(2,1),(1,1)</p>
+                    <p>(4,1),(4,2),(5,4),(4,4),(4,5),(5,5),(6,5),(6,4),(5,2),(6,2),(6,1),(5,1),(4,1)</p>
+                    <p>(7,3),(7,4),(8,5),(9,5),(9,4),(9,3),(9,2),(9,1),(8,1),(8,2),(8,3),(8,4),(7,3)</p>
+                </div>
+            `
+        },
+        {
+            name: 'WHOAMI?',
+            score: 200,
+            id: 9,
+            description: `
+                <div>
+                    <div class="flex items-center gap-32">
+                        <img alt="avatar2" src="images/avatar2.jpeg" height="300" width="200" />
+                        <img alt="avatar" src="images/avatar.jpeg" height="200" width="200" />
+                        <p>rcxs{uxdb_pat13qk}</p>
+                    </div>
+                </div>
+            `
+        },
     ];
     const inputValues = Array.from(new Array(challenges.length)).fill('');
     const expanded = Array.from(new Array(challenges.length)).fill(false);

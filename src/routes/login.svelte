@@ -1,7 +1,7 @@
 <script lang="ts">
     import axios from "axios";
 
-    let teamName = '';
+    let username = '';
     let password = '';
 
     let error = '';
@@ -9,7 +9,11 @@
     let isPromiseLoading = false;
 
     const validate = () => {
-        if (teamName.length < 3) {
+        if (username.indexOf(' ') >= 0) {
+            error = 'Username should not have spaces';
+            return false;
+        }
+        if (username.length < 3) {
             error = 'Team name should have at least 3 symbols.'
             return false;
         }
@@ -30,7 +34,7 @@
 
         try {
             const res = await axios.post('http://localhost:8000/api/login', {
-                username: teamName,
+                username,
                 password
             });
             const { token } = res.data;
@@ -44,7 +48,7 @@
 
             window.location.replace("/");
         } catch (err) {
-            error = err;
+            error = err.response.data.message;
         } finally {
             isPromiseLoading = false;
         }
@@ -55,8 +59,8 @@
     <p class="uppercase text-3xl font-bold mb-8" style="color: #e85154">LOGIN</p>
     <form on:submit|preventDefault={login}>
         <div class="relative z-0 w-full mb-6 group">
-            <input bind:value={teamName} type="text" name="floating_first_name" id="floating_team_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-            <label for="floating_team_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Team name</label>
+            <input bind:value={username} type="text" name="floating_first_name" id="floating_username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+            <label for="floating_username" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username</label>
         </div>
         <div class="relative z-0 w-full mb-6 group">
             <input bind:value={password} type="password" name="floating_password" id="floating_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />

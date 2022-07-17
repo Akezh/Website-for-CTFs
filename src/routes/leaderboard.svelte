@@ -26,7 +26,8 @@
         userStore.update((prevStore) => ({
             ...prevStore,
             isLoggedIn: true,
-            teamName: team.username,
+            username: team.username,
+            teamName: team.name,
             members: team.members,
             id: team.id,
             score: team.score,
@@ -59,9 +60,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                        {#each ranking as { name, score, members }, i}
-                            {#if $userStore.teamName === name}
-                                <tr class="border-b" style="background-color: darkcyan">
+                        {#each ranking as { username, name, score, members }, i}
+                            {#if $userStore.username === username}
+                                <tr class="border-b" style="background-color: #495C83">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">#{i+1}</td>
                                     <td class="text-sm font-light px-10 py-4 whitespace-nowrap">
                                         {name}

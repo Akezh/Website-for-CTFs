@@ -16,7 +16,8 @@
         userStore.update((prevStore) => ({
             ...prevStore,
             isLoggedIn: true,
-            teamName: team.username,
+            username: team.username,
+            teamName: team.name,
             members: team.members,
             id: team.id,
             score: team.score,
@@ -51,7 +52,7 @@
         </div>
         <div class="flex items-center justify-between mb-2" style="width: 500px">
             <p>Solved Challenges: </p>
-            <p>{solvedProblems}</p>
+            <p>{solvedProblems || '-'}</p>
         </div>
     {/if}
 </div>

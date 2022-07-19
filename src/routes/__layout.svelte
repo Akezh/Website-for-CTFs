@@ -34,6 +34,7 @@
     const options = {};
 </script>
 
+<title>N17R CTF</title>
 <SvelteToast {options} />
 <TopNavBar />
 <LeftNavBar />

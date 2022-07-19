@@ -79,22 +79,23 @@
             id: 6,
             description: `
                 <div>
+                    <p class="mb-4">This alien message was received from UFO. The world needs your help!</p>
                     <audio controls>
-                      <source src="audio/task7.wav" type="audio/wav">
+                      <source src="task7.wav" type="audio/wav">
                     Your browser does not support the audio element.
                     </audio>
                 </div>
             `
         },
         {
-            name: 'WHOAMI?',
+            name: 'WHO AM I?',
             score: 250,
             id: 7,
             description: `
                 <div>
                     <div class="flex items-center gap-32">
-                        <img alt="avatar2" src="images/avatar2.jpeg" height="300" width="200" />
-                        <img alt="avatar" src="images/avatar.jpeg" height="200" width="200" />
+                        <img alt="avatar2" src="avatar2.jpeg" height="300" width="200" />
+                        <img alt="avatar" src="avatar.jpeg" height="200" width="200" />
                         <p>bsog{k0c_wy3_dadb_km_rads_ovq1efg}</p>
                     </div>
                 </div>
@@ -120,7 +121,7 @@
             description: `
                 <div>
                     <div class="flex items-center gap-32">
-                        <img alt="oogway" src="images/oogway.png" width="300" />
+                        <img alt="oogway" src="oogway.png" width="300" />
                     </div>
                     <p class="mt-6">Yesterday is history, tomorrow is a mystery, and today is a gift.. <span style="color: rgba(255,255,255,.01)">image metadata?..</span></p>
                 </div>

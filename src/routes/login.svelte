@@ -1,5 +1,6 @@
 <script lang="ts">
     import axios from "axios";
+    import { API_URL } from '../config';
 
     let username = '';
     let password = '';
@@ -33,7 +34,7 @@
         isPromiseLoading = true;
 
         try {
-            const res = await axios.post('http://localhost:8000/api/login', {
+            const res = await axios.post(`${API_URL}/api/login`, {
                 username,
                 password
             });

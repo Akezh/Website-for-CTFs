@@ -1,8 +1,9 @@
 <script lang="ts">
     import { Accordion, AccordionItem } from "svelte-accessible-accordion";
     import axios from "axios";
+    import { userStore } from "../stores/userStore";
+    import { LINK_URL, API_URL } from '../config';
 
-    const LINK_URL = "http://localhost:8001";
     const WEB3 = "https://gist.github.com/ironsoul0/c14856923186ec1f754ee849f78aa0e1";
     const CONTRACT = "https://rinkeby.etherscan.io/address/0x0bff684cfdbd855402b1cfce7f562bbfafd1b824";
 
@@ -127,7 +128,7 @@
 
     const handleTaskSubmit = (taskId: number, answer: string) => async () => {
         try {
-            const response = await axios.post('http://localhost:8000/api/task', {
+            const response = await axios.post(`${API_URL}/api/task`, {
                 id: taskId,
                 flag: answer,
             }, { headers: { Authorization: localStorage.getItem('accessToken')}});
@@ -138,6 +139,9 @@
             console.log('error');
         }
     }
+
+    let solvedTasks = $userStore.solvedTasks.map(x => x.task_id);
+    console.log("solved", solvedTasks, $userStore.solvedTasks);
 </script>
 
 <p class="font-bold text-4xl uppercase mb-12">Challenges</p>
@@ -146,7 +150,7 @@
 <div class="text-white">
     <Accordion multiselect>
         {#each challenges as { name, score, id, description, link }, i}
-            <div style="margin-top: 8px; background-color: {backgroundColors[i]}">
+            <div style="margin-top: 8px; background-color: {solvedTasks?.includes(id) ? "rgba(77,255,136,0.5)" : backgroundColors[i]}">
                 <AccordionItem bind:expanded={expanded[i]} title="{id}. {name} ({score} score)">
                     <div>
                         {@html description}

@@ -9,28 +9,31 @@
         .join(", ");
 </script>
 
-<div class="mx-64 text-white" style="margin-left: 20%; margin-right: 20%">
-    <h1 class="mb-8">Welcome to CTF!</h1>
+<div class="text-white">
+    <div class="max-w-2xl mx-auto mt-10">
+        <h1 class="mb-8">Welcome to CTF!</h1>
 
-    <img alt="CTF Mask" src="https://c.tenor.com/6OAM535OZ-QAAAAC/hacker-mask.gif" width="500" />
+        <img alt="CTF Mask" src="https://c.tenor.com/6OAM535OZ-QAAAAC/hacker-mask.gif" class="w-full" />
 
-    <div class="my-8" />
-    {#if $userStore.isLoggedIn}
-        <div class="flex items-center justify-between mb-2" style="width: 500px">
-            <p>Team name: </p>
-            <p>{$userStore.teamName || ''}</p>
-        </div>
-        <div class="flex items-center justify-between mb-2" style="width: 500px">
-            <p>Score: </p>
-            <p>{$userStore.score || 0}</p>
-        </div>
-        <div class="flex items-center justify-between mb-2" style="width: 500px">
-            <p>Members: </p>
-            <p>{$userStore.members || ''}</p>
-        </div>
-        <div class="flex items-center justify-between mb-2" style="width: 500px">
-            <p>Solved Challenges: </p>
-            <p>{solvedProblems || '-'}</p>
-        </div>
-    {/if}
+        <div class="my-8" />
+        {#if $userStore.isLoggedIn}
+            <div class="flex items-center justify-between mb-2">
+                <p>Team name: </p>
+                <p>{$userStore.teamName || ''}</p>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <p>Score: </p>
+                <p>{$userStore.score || 0}</p>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <p>Members: </p>
+                <p>{$userStore.members || ''}</p>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <p>Solved Challenges: </p>
+                <p>{solvedProblems || '-'}</p>
+            </div>
+        {/if}
+
+    </div>
 </div>

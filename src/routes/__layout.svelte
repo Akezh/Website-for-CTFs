@@ -7,14 +7,16 @@
     import axios from 'axios';
     import { userStore } from "../stores/userStore";
     import { onMount } from "svelte";
+    import { API_URL } from '../config';
 
     onMount(async () => {
-        const profileResponse = await axios.get('http://localhost:8000/api/profile', {
+        const profileResponse = await axios.get(`${API_URL}/api/profile`, {
             headers: {
                 Authorization: localStorage.getItem('accessToken')
             }
         });
         const { solved_tasks, team } = profileResponse.data;
+        console.log("fetched solved_tasks", solved_tasks);
 
         userStore.update((prevStore) => ({
             ...prevStore,

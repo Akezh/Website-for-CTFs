@@ -1,5 +1,6 @@
 <script lang="ts">
     import axios from 'axios';
+    import { API_URL } from '../config';
 
     let username = '';
     let teamName = '';
@@ -52,7 +53,7 @@
         const members = [member1, member2, member3].filter(member => member).join(', ');
 
         try {
-            await axios.post('http://localhost:8000/api/register', {
+            await axios.post(`${API_URL}/api/register`, {
                 username,
                 members,
                 name: teamName,

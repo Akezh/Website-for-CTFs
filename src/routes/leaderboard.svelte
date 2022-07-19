@@ -2,6 +2,7 @@
     import axios from 'axios';
     import { onMount } from 'svelte';
     import { userStore } from "../stores/userStore";
+    import { API_URL } from '../config';
 
     type Leaderboard = Array<{
         name: string;
@@ -12,11 +13,11 @@
     let ranking: Leaderboard = [];
 
     onMount(async () => {
-       const leaderboardResponse = await axios.get('http://localhost:8000/api/leaderboard');
+       const leaderboardResponse = await axios.get(`${API_URL}/api/leaderboard`);
        const { teams } = leaderboardResponse.data;
        ranking = teams.sort((a, b) => b.score - a.score);
 
-        const profileResponse = await axios.get('http://localhost:8000/api/profile', {
+        const profileResponse = await axios.get(`${API_URL}/api/profile`, {
             headers: {
                 Authorization: localStorage.getItem('accessToken')
             }

@@ -119,6 +119,19 @@
                 </div>
             `
         },
+        {
+            name: 'Oogway strikes again!',
+            score: 200,
+            id: 10,
+            description: `
+                <div>
+                    <div class="flex items-center gap-32">
+                        <img alt="oogway" src="images/oogway.png" width="300" />
+                    </div>
+                    <p class="mt-8">Yesterday is history, tomorrow is a mystery, and today is a gift..</p>
+                </div>
+            `
+        },
     ];
     const inputValues = Array.from(new Array(challenges.length)).fill('');
     const expanded = Array.from(new Array(challenges.length)).fill(false);

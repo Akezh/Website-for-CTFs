@@ -63,7 +63,7 @@
             success = 'You have successfully registered. Redirecting to login page...';
 
             await new Promise((resolve => {
-                setTimeout(() => resolve(), 2000);
+                setTimeout(() => resolve(), 1000);
             }))
 
             window.location.replace("/login");

@@ -18,7 +18,7 @@
             name: 'Eminem',
             score: 50,
             id: 1,
-            link: "task1",
+            link: "eminem",
             description: `
                 <div>
                     <p>Legends say that all hackers love rap music..</p>
@@ -27,10 +27,22 @@
             `,
         },
         {
+            name: 'Old School',
+            score: 75,
+            id: 2,
+            description: `
+                <div>
+                    <p>(1,1),(1,2),(1,3),(1,4),(1,5),(2,5),(3,5),(3,4),(3,3),(3,2),(3,1),(2,1),(1,1)</p>
+                    <p>(4,1),(4,2),(5,4),(4,4),(4,5),(5,5),(6,5),(6,4),(5,2),(6,2),(6,1),(5,1),(4,1)</p>
+                    <p>(7,3),(7,4),(8,5),(9,5),(9,4),(9,3),(9,2),(9,1),(8,1),(8,2),(8,3),(8,4),(7,3)</p>
+                </div>
+            `
+        },
+        {
             name: 'With love from N17R',
             score: 100,
-            id: 2,
-            link: "task2",
+            id: 3,
+            link: "n17r",
             description: `
                 <div>
                     <p>All we need is love!</p>
@@ -38,21 +50,10 @@
             `
         },
         {
-            name: 'TOP Secret',
-            score: 150,
-            id: 3,
-            link: "task3",
-            description: `
-                <div>
-                    <p>You have to prove that you are a real hacker!</p>
-                </div>
-            `
-        },
-        {
             name: 'Help Yerlan',
             score: 150,
             id: 4,
-            link: "task4",
+            link: "yerlan",
             description: `
                 <div>
                     <p>Yerlan recently started working on some cool project.</p>
@@ -62,34 +63,20 @@
             `
         },
         {
-            name: 'Help Yerlan 2',
+            name: 'TOP Secret',
             score: 200,
             id: 5,
-            link: "task5",
+            link: "secret",
             description: `
                 <div>
-                    <p>It seems that Yerlan changed his authentication approach this time..</p>
-                    <p>But is the new approach safer?..</p>
-                    <p>It seems that he has also uploaded some <a class="underline" target="_blank" href="${LINK_URL}/public/task5/dictionary.txt">interesting file</a> to his GitHub.</p>
+                    <p>You have to prove that you are a real hacker!</p>
                 </div>
             `
         },
         {
-            name: 'Oogway and Web3',
-            score: 400,
+            name: 'Alien message',
+            score: 200,
             id: 6,
-            description: `
-                <div>
-                    <p>Legend says that Aidar once invited Oogway to explain Web3 to N17R students.</p>
-                    <p>Oogway did his best but did students really understand how to work with smart contracts?</p>
-                    <p>Oogway has left <a class="underline" target="_blank" href="${CONTRACT}">this</a> and <a class="underline" target="_blank" href="${WEB3}">this</a> to check.. Good luck!</p>
-                </div>
-            `
-        },
-        {
-            name: '_____ code',
-            score: 100,
-            id: 7,
             description: `
                 <div>
                     <audio controls>
@@ -100,21 +87,9 @@
             `
         },
         {
-            name: 'Company!',
-            score: 100,
-            id: 8,
-            description: `
-                <div>
-                    <p>(1,1),(1,2),(1,3),(1,4),(1,5),(2,5),(3,5),(3,4),(3,3),(3,2),(3,1),(2,1),(1,1)</p>
-                    <p>(4,1),(4,2),(5,4),(4,4),(4,5),(5,5),(6,5),(6,4),(5,2),(6,2),(6,1),(5,1),(4,1)</p>
-                    <p>(7,3),(7,4),(8,5),(9,5),(9,4),(9,3),(9,2),(9,1),(8,1),(8,2),(8,3),(8,4),(7,3)</p>
-                </div>
-            `
-        },
-        {
             name: 'WHOAMI?',
-            score: 200,
-            id: 9,
+            score: 250,
+            id: 7,
             description: `
                 <div>
                     <div class="flex items-center gap-32">
@@ -126,15 +101,40 @@
             `
         },
         {
+            name: 'Help Yerlan 2',
+            score: 300,
+            id: 8,
+            link: "yerlan2",
+            description: `
+                <div>
+                    <p>It seems that Yerlan changed his authentication approach this time..</p>
+                    <p>But is the new approach safer?..</p>
+                    <p>It seems that he has also uploaded some <a class="underline" target="_blank" href="${LINK_URL}/public/task5/dictionary.txt">interesting file</a> to his GitHub.</p>
+                </div>
+            `
+        },
+        {
             name: 'Oogway strikes again!',
-            score: 200,
-            id: 10,
+            score: 300,
+            id: 9,
             description: `
                 <div>
                     <div class="flex items-center gap-32">
                         <img alt="oogway" src="images/oogway.png" width="300" />
                     </div>
                     <p class="mt-6">Yesterday is history, tomorrow is a mystery, and today is a gift.. <span style="color: rgba(255,255,255,.01)">image metadata?..</span></p>
+                </div>
+            `
+        },
+        {
+            name: 'Oogway and Web3',
+            score: 400,
+            id: 10,
+            description: `
+                <div>
+                    <p>Legend says that Aidar once invited Oogway to explain Web3 to N17R students.</p>
+                    <p>Oogway did his best but did students really understand how to work with smart contracts?</p>
+                    <p>Oogway has left <a class="underline" target="_blank" href="${CONTRACT}">this</a> and <a class="underline" target="_blank" href="${WEB3}">this</a> to check.. Good luck!</p>
                 </div>
             `
         },
@@ -189,7 +189,7 @@
     <Accordion multiselect>
         {#each challenges as { name, score, id, description, link }, i}
             <div style="margin-top: 8px; background-color: {solvedTasks?.includes(id) ? "rgba(77,255,136,0.5)" : backgroundColors[i]}">
-                <AccordionItem bind:expanded={expanded[i]} title="{id}. {name} ({score} score)">
+                <AccordionItem bind:expanded={expanded[i]} title="{id}. {name} ({score} points)">
                     <div>
                         {@html description}
                     </div>

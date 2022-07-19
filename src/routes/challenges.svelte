@@ -1,5 +1,8 @@
 <script lang="ts">
     import { Accordion, AccordionItem } from "svelte-accessible-accordion";
+    import { toast } from '@zerodevx/svelte-toast'
+    import { ConfettiExplosion } from 'svelte-confetti-explosion'
+    import { tick } from 'svelte'
     import axios from "axios";
     import { userStore } from "../stores/userStore";
     import { LINK_URL, API_URL } from '../config';
@@ -7,7 +10,10 @@
     const WEB3 = "https://gist.github.com/ironsoul0/c14856923186ec1f754ee849f78aa0e1";
     const CONTRACT = "https://rinkeby.etherscan.io/address/0x0bff684cfdbd855402b1cfce7f562bbfafd1b824";
 
-    const challenges = [
+    let isVisible = false;
+
+    let challenges = [];
+    $: challenges = $userStore.isLoggedIn ? [
         {
             name: 'Eminem',
             score: 50,
@@ -132,12 +138,15 @@
                 </div>
             `
         },
-    ];
+    ] : [];
     const inputValues = Array.from(new Array(challenges.length)).fill('');
     const expanded = Array.from(new Array(challenges.length)).fill(false);
 
     let backgroundColors;
     $: backgroundColors = expanded.map((n) => !n ? 'rgba(255,255,255,.04)' : '#062a4e');
+
+    let solvedTasks = []
+    $: solvedTasks = $userStore.solvedTasks.map(x => x.task_id);
 
     const handleTaskSubmit = (taskId: number, answer: string) => async () => {
         try {
@@ -147,19 +156,35 @@
             }, { headers: { Authorization: localStorage.getItem('accessToken')}});
             const { message } = response.data;
 
-            console.log('message', message);
+            if (response.status === 200) {
+                $userStore.solvedTasks.push({ task_id: taskId });
+                $: solvedTasks = $userStore.solvedTasks.map(x => x.task_id);
+                isVisible = false;
+                await tick();
+                isVisible = true;
+                toast.push(message, {
+                    theme: {
+                        '--toastBackground': '#48BB78',
+                        '--toastBarBackground': '#2F855A'
+                    }})
+            }
         } catch (error) {
-            console.log('error');
+            toast.push(error.response.data.message, {
+                theme: {
+                    '--toastBackground': '#F56565',
+                    '--toastBarBackground': '#C53030'
+                }})
         }
     }
-
-    let solvedTasks = $userStore.solvedTasks.map(x => x.task_id);
-    console.log("solved", solvedTasks, $userStore.solvedTasks);
 </script>
 
-<p class="font-bold text-4xl uppercase mb-12">Challenges</p>
+{#if isVisible}
+    <div>
+        <ConfettiExplosion />
+    </div>
+{/if}
 
-<!--<p class="font-bold text-xl uppercase my-4">Blockchain</p>-->
+<p class="font-bold text-4xl uppercase mb-12">Challenges</p>
 <div class="text-white">
     <Accordion multiselect>
         {#each challenges as { name, score, id, description, link }, i}

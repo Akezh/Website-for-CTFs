@@ -1,5 +1,6 @@
 <script lang="ts">
     import '../tailwind.css'
+    import { SvelteToast } from '@zerodevx/svelte-toast'
 
     import LeftNavBar from "../components/LeftNavBar.svelte";
     import TopNavBar from "../components/TopNavBar.svelte";
@@ -29,8 +30,11 @@
             solvedTasks: solved_tasks
         }));
     });
+
+    const options = {};
 </script>
 
+<SvelteToast {options} />
 <TopNavBar />
 <LeftNavBar />
 

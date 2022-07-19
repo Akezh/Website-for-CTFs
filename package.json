@@ -19,6 +19,7 @@
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
+		"@zerodevx/svelte-toast": "^0.7.2",
 		"autoprefixer": "^10.4.7",
 		"eslint": "^8.16.0",
 		"eslint-config-prettier": "^8.3.0",
@@ -37,6 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"axios": "^0.27.2"
+		"axios": "^0.27.2",
+		"svelte-confetti-explosion": "^0.2.0"
 	}
 }

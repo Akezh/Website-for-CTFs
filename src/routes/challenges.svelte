@@ -114,7 +114,7 @@
                     <div class="flex items-center gap-32">
                         <img alt="avatar2" src="images/avatar2.jpeg" height="300" width="200" />
                         <img alt="avatar" src="images/avatar.jpeg" height="200" width="200" />
-                        <p>rcxs{uxdb_pat13qk}</p>
+                        <p>bsog{k0c_wy3_dadb_km_rads_ovq1efg}</p>
                     </div>
                 </div>
             `

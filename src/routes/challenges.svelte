@@ -128,7 +128,7 @@
                     <div class="flex items-center gap-32">
                         <img alt="oogway" src="images/oogway.png" width="300" />
                     </div>
-                    <p class="mt-8">Yesterday is history, tomorrow is a mystery, and today is a gift..</p>
+                    <p class="mt-6">Yesterday is history, tomorrow is a mystery, and today is a gift.. <span style="color: rgba(255,255,255,.01)">image metadata?..</span></p>
                 </div>
             `
         },

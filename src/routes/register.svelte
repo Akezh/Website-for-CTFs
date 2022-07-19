@@ -27,8 +27,8 @@
             error = 'Team name should have at least 3 symbols.'
             return false;
         }
-        if (member1.length < 3 || member2.length < 3 || member3.length < 3) {
-            error = 'Each member field should have at least 3 symbols.'
+        if (member1.length < 3 && member2.length < 3 && member3.length < 3) {
+            error = 'At least one member is required.'
             return false;
         }
         if (password.length < 6 || confirmPassword.length < 6) {
@@ -68,7 +68,7 @@
 
             window.location.replace("/login");
         } catch (err) {
-            error = err;
+            error = 'Username or team name is already taken.';
         } finally {
             isPromiseLoading = false;
         }
@@ -76,7 +76,8 @@
 </script>
 
 <div class="p-8" style="background-color: rgba(255,255,255,.01); margin-left: 20%; margin-right: 20%">
-    <p class="uppercase text-3xl font-bold mb-8" style="color: #e85154">REGISTER</p>
+    <p class="uppercase text-3xl font-bold mb-2" style="color: #e85154">REGISTER</p>
+    <p class="mb-8 text-sm">Only one member must register for the entire team.</p>
     <form on:submit|preventDefault={register}>
         <div class="relative z-0 w-full mb-6 group">
             <input bind:value={username} type="text" name="floating_first_name" id="floating_username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
@@ -87,15 +88,15 @@
             <label onerror="error" for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Team name</label>
         </div>
         <div class="relative z-0 w-full mb-6 group">
-            <input bind:value={member1} type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+            <input bind:value={member1} type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
             <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Team member name 1</label>
         </div>
         <div class="relative z-0 w-full mb-6 group">
-            <input bind:value={member2} type="text" name="floating_first_name" id="floating_second_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+            <input bind:value={member2} type="text" name="floating_first_name" id="floating_second_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
             <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Team member name 2</label>
         </div>
         <div class="relative z-0 w-full mb-6 group">
-            <input bind:value={member3} type="text" name="floating_first_name" id="floating_third_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+            <input bind:value={member3} type="text" name="floating_first_name" id="floating_third_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
             <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Team member name 3</label>
         </div>
         <div class="relative z-0 w-full mb-6 group">

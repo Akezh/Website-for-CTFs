@@ -10,7 +10,7 @@
 <nav class="top-nav nav-fixed">
     <div class="nav-wrapper">
         <div><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full"><i class="fas fa-bars" aria-label="Menu Bars"></i></a></div>
-        <a class="logo-link text-amber-500" href="/"><span>N17R CTF</span></a>
+        <a class="logo-link text-amber-500" href="/"><span style="color: #FFC107 !important;">N17R CTF</span></a>
 
         <ul class="float-right flex gap-8 mr-8">
             {#if !$userStore.isLoggedIn}

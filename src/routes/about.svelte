@@ -1,6 +1,6 @@
 <p class="font-bold text-4xl uppercase mb-12">About CTF</p>
 
-<div class="text-white">
+<div>
     <p class="mb-6 text-xl">Welcome N17R hackers!</p>
     <p class="mb-6 text-md">If you are newbies in Capture The Flag (CTF) competitions, here is a quick intro.</p>
     <p class="mb-6 text-md">CTF is an information security contest in which participants are assigned a certain number of tasks to get into the servers and steal an encoded string from a hidden file. This string resembles sensitive information and is known as a flag. Participants capture these flags using their ethical hacking skills and put these flags into the CTF server.</p>

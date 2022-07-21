@@ -13,6 +13,6 @@ html {
     background-color: #0c1221;
 }
 
-p {
-    color: white;
+p, span, a, input {
+    color: white !important;
 }

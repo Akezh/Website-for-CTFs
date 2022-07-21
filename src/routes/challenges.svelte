@@ -198,9 +198,9 @@
                         <p>Link: <a target="_blank" href="{`${LINK_URL}/${link}`}" class="underline">{`${LINK_URL}/${link}`}</a></p>
                     {/if}
                     <div class="flex items-center content-between gap-64 mt-4">
-                        <input type="text" id="default-input" bind:value={inputValues[i]} placeholder="Flag" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        <input type="text" id="default-input" bind:value={inputValues[i]} placeholder="Flag" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                         <button type="click" on:click|preventDefault={handleTaskSubmit(i+1, inputValues[i])}
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="width: 120px;">
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm sm:w-auto bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" style="width: 120px;">
                             Submit</button>
                     </div>
                 </AccordionItem>
